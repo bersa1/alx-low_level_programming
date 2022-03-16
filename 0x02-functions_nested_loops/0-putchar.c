@@ -1,7 +1,7 @@
 #include "holberton.h"
 #include "main.h"
 /**
- * main - prints a word
+ * main - prints _putchar, followed by a new line.
  *
  * Description: just prints a statement
  * Return: Always(0) Success
@@ -9,16 +9,15 @@
 
 int main(void)
 {
-	_putchar('H');
-	_putchar('o');
-	_putchar('l');
-	_putchar('b');
-	_putchar('e');
-	_putchar('r');
-	_putchar('t');
-	_putchar('o');
-	_putchar('n');
-	_putchar('\n');
+	putchar('_');
+	putchar('p');
+	putchar('u');
+	putchar('t');
+	putchar('c');
+	putchar('h');
+	putchar('a');
+	putchar('r');
+	putchar('\n');
 
 	return (0);
 }
