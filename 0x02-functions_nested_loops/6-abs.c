@@ -13,4 +13,4 @@ int _abs(int r)
 	else
 		return (r * -1);
 }
-© 2022 G
+
