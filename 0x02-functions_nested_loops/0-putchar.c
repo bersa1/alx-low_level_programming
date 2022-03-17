@@ -1,22 +1,19 @@
-#include "holberton.h"
+#include <stdio.h>
 #include "main.h"
 /**
- * main - prints _putchar, followed by a new line.
+ * main - Entry point
  *
- * Description: just prints a statement
- * Return: Always(0) Success
+ * Return: Always 0 (Success)
  */
-
 int main(void)
 {
-	putchar('_');
-	putchar('p');
-	putchar('u');
-	putchar('t');
-	putchar('c');
-	putchar('h');
-	putchar('a');
-	putchar('r');
+	char *sh = "_putchar";
+
+	while (*sh)
+	{
+		putchar(*sh);
+		sh++;
+	}
 	putchar('\n');
 
 	return (0);
