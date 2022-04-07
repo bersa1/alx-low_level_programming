@@ -1,27 +1,26 @@
-#include <stdlib.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
- * main - multiplies two arguments and prints result
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 if no errors
+ *main-print sum of 2 numbers.
+ *@argc:number of commandline arguments.
+ *@argv:pointer to an array of commmand line arguments.
+ *Return:0-success, non-zero-fail.
  */
 
 int main(int argc, char *argv[])
 {
-	int i, first_num, sec_num, product;
+	int sum;
 
-	if (argc != 3)
+	if (argc == 3)
 	{
-		return (printf("Erro\n"), 1);
+		sum = atoi(argv[1]) * atoi(argv[2]);
+		printf("%d\n", sum);
 	}
-	for (i = 0; i < argc; i++)
+	else
 	{
-		first_num = atoi(argv[1]);
-		sec_num = atoi(argv[2]);
+		printf("Error\n");
+		return (1);
 	}
-	product = first_num * sec_num;
-	printf("%d\n", product);
+
 	return (0);
 }

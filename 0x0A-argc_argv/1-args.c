@@ -1,23 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
-
 /**
- * main - prints number of arguments
- * @argc: first parameter
- * @argv: second parameter
- *
- * Description: prints number of arguments
- * Return: 0 for code success
+ *main-print number of arguments passed.
+ *@argc:number of commandline arguments.
+ *@argv:pointer to an array of commmand line arguments.
+ *Return:0-success, non-zero-fail.
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[] __attribute__((unused)))
 {
-	int sum;
-
-	for (sum = 0; sum < argc; sum++)
-	{
-		*argv[sum] = *argv[sum];
-	}
-	printf("%d\n", (sum - 1));
+	printf("%d\n", argc - 1);
 	return (0);
 }
