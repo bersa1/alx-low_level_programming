@@ -1,71 +1,65 @@
-#include "holberton.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include "holberton.h"
 
 /**
- * _strlen - gets the lenght of input strings
- * @str: input string
- * Return: len of the string
+ * _pow_recursion - function that returns the value of x
+ * raised to the power of y
+ * @x: base number
+ * @y: pow number
+ * Return: int
  */
 
-int _strlen(const char *str)
+int _pow_recursion(int x, int y)
 {
-	int len = 0;
-
-	while (*str)
-	{
-		len++;
-		str++;
-	}
-	return (len);
+	if (y < 0)
+		return (-1);
+	if (y == 0)
+		return (1);
+	return (x * _pow_recursion(x, y - 1));
 }
 
 /**
- * _to_power - prints the power of numbers
- * @base: base parameter
- * @power: power parameter
- * Return: product of two numbers
+ * _strlen - function that returns the length of a string.
+ *
+ * @s: pointer to an string
+ * Return: int
  */
 
-int _to_power(const int base, int power)
+int _strlen(const char *s)
 {
-	int product = 1;
+	int i = 0;
 
-	while (power > 1)
+	while (s[i] != '\0')
 	{
-		product *= base;
-		power++;
+		i += 1;
 	}
-	return (product);
+	return (i);
 }
 
 /**
- * binary_to_uint - converts a binary number to an unsigned int
- * @b: input value
- * Return: converted number, or 0 if b is NULL
+ * binary_to_uint - function that converts a binary number to an unsigned int
+ * @b: pointing to a string of 0 and 1 chars
+ * Return: the converted number, or 0 if
+ * there is one or more chars in the string b that is not 0 or 1
+ * b is NULL
  */
 
 unsigned int binary_to_uint(const char *b)
 {
-	int power, num;
+	int len, exp = 0;
+	unsigned int res = 0;
 
-	power = _strlen(b) - 1;
-	num = 0;
-	if (!b)
-	{
+	if (b == NULL)
 		return (0);
-	}
-	while (*b)
+	len = _strlen(b);
+	while (len-- && len >= 0)
 	{
-		if (!(*b == '0' || *b == '1'))
-		{
+		if (b[len] == '1')
+			res += _pow_recursion(2, exp);
+		else if (b[len] != '0')
 			return (0);
-		}
-		if (*b == '1')
-		{
-			num += _to_power(2, power);
-		}
-		b++;
-		power--;
+		exp++;
 	}
-	return (num);
+	return (res);
 }

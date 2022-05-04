@@ -1,2 +1,4 @@
-# Bit manipulation
- Foundations - Low-level programming & Algorithm ― Hatching out
+0x14. C - Bit manipulation
+
+* Look for the right source of information without too much help
+* How to manipulate bits and use bitwise operators

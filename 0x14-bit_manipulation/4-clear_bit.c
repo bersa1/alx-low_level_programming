@@ -1,41 +1,28 @@
 #include "holberton.h"
 
 /**
- * _to_power - powers a number b to the p's power
- * @base: base inupt
- * @power: power
- * Return: return b to the power of a
- */
-
-unsigned long int _to_power(int base, int power)
-{
-	unsigned long int res = 1;
-
-	while (power)
-	{
-		res *= base;
-		power--;
-	}
-	return (res);
-}
-
-/**
- * clear_bit - sets bit to zero at index index
- * @n: input integer
- * @index: returns the value of a bit at a given index
- * Return: 1 for ssucess -1 for failure
+ * clear_bit - sets the bit at a given index to 0
+ * @n: pointer to the number
+ * @index: index to set
+ * Return: 1 if it worked, -1 if an error occured
  */
 
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int test;
+	unsigned long int mask;
+	unsigned int s_index;
 
-	if (index > sizeof(n) * 8 - 1)
+	s_index = 0;
+	mask = 1;
+	while (mask < 2147483648)
 	{
-		return (-1);
+		if (s_index == index)
+		{
+			*n = *n & ~(1 << index);
+			return (1);
+		}
+		s_index++;
+		mask = mask << 1;
 	}
-	test = _to_power(2, index);
-	*n = (*n & test) ? *n ^ test : *n;
-	return (1);
-
+	return (-1);
 }
