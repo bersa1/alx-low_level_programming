@@ -1,48 +1,46 @@
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "holberton.h"
-
 /**
- * _strlen - function that returns the length of a string.
- *
- * @s: pointer to an string
- * Return: int
- */
-
+  * _strlen - length of a string
+  * @s: input char
+  * Return: length of a string
+**/
 int _strlen(char *s)
 {
 	int i = 0;
 
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		i += 1;
+		i++;
 	}
 	return (i);
 }
-
 /**
- * create_file - function that create a file
- * @filename: name of file to be created
- * @text_content: NULL terminated string to write to the file
- * Return: 1 on success, -1 on failure
- */
-
+* create_file - check the code for Holberton School students.
+* @filename: file to create.
+* @text_content: info to write into the file.
+* Return: 1 on success, -1 on failure
+*/
 int create_file(const char *filename, char *text_content)
 {
-	int fd, fd_write;
+	ssize_t nletters;
+	int file;
 
-	if (filename == NULL)
-		return (-1);
-	fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0600);
-	if (fd == -1)
-		return (-1);
-	if (text_content == NULL)
+	if (!filename)
 		return (1);
-	fd_write = write(fd, text_content, _strlen(text_content));
-	close(fd);
-	if (fd_write == -1)
+	file = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	if (file == -1)
+	{
 		return (-1);
+	}
+	if (text_content)
+	{
+		nletters = write(file, text_content, _strlen(text_content));
+		if (nletters == -1)
+		{
+			close(file);
+			return (-1);
+		}
+	}
+	close(file);
 	return (1);
 }

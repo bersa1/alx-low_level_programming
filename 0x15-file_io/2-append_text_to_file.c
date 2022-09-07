@@ -1,48 +1,46 @@
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "holberton.h"
-
 /**
- * _strlen - function that returns the length of a string.
- *
- * @s: pointer to an string
- * Return: int
- */
-
+  * _strlen - length of a string
+  * @s: input char
+  * Return: length of a string
+**/
 int _strlen(char *s)
 {
 	int i = 0;
 
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		i += 1;
+		i++;
 	}
 	return (i);
 }
-
 /**
- * append_text_to_file - function that appends text ot a file.
- * @filename: name of the file
- * @text_content: NULL terminated string to add at the end of the file
- * Return: 1 on success and -1 on failure
- */
-
+* append_text_to_file - appends text at the end of a file.
+* @filename: file to append.
+* @text_content: info to append into the file.
+* Return: 1 on success, -1 on failure
+*/
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd, fd_write;
+	ssize_t nletters;
+	int file;
 
-	if (filename == NULL)
+	if (!filename)
 		return (-1);
-	if (text_content == NULL)
-		return (1);
-	fd = open(filename, O_RDWR | O_APPEND);
-	if (fd == -1)
+	file = open(filename, O_WRONLY | O_APPEND);
+	if (file == -1)
+	{
 		return (-1);
-	fd_write = write(fd, text_content, _strlen(text_content));
-	close(fd);
-	if (fd_write == -1)
-		return (-1);
+	}
+	if (text_content)
+	{
+		nletters = write(file, text_content, _strlen(text_content));
+		if (nletters == -1)
+		{
+			close(file);
+			return (-1);
+		}
+	}
+	close(file);
 	return (1);
 }
