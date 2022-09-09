@@ -1,2 +1,2 @@
-# C - Dynamic libraries
-Foundations - Low-level programming & Algorithm ― Hatching out
+# low level programming
+# alx-low_level_programming
